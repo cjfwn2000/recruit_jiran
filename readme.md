@@ -9,7 +9,8 @@ Lee Cheol Ju
 # 확인해보기
 
 제 서버에 만들어 가동해놓았습니다. 다음 주소로 들어가볼 수 있습니다.
-`http://ec2-13-125-82-118.ap-northeast-2.compute.amazonaws.com:8080/memo`
+
+http://ec2-13-125-82-118.ap-northeast-2.compute.amazonaws.com:8080/memo
 
 # 지란지교데이터 자격요건과 현 포트폴리오
 
@@ -74,20 +75,21 @@ Lee Cheol Ju
     ```
 
 2. 데이터베이스 준비
-계정: ID=`cheoldb` / PW=`cheolcheol`
-데이터베이스 이름: `cheoldemo`
-테이블: `memo` 한 개 있음
-```sql
-MariaDB [cheoldemo]> describe memo;
-+---------+--------------+------+-----+---------------------+----------------+
-| Field   | Type         | Null | Key | Default             | Extra          |
-+---------+--------------+------+-----+---------------------+----------------+
-| id      | int(11)      | NO   | PRI | NULL                | auto_increment |
-| writer  | varchar(63)  | NO   |     | NULL                |                |
-| content | varchar(255) | NO   |     | NULL                |                |
-| regtime | timestamp    | NO   |     | current_timestamp() |                |
-+---------+--------------+------+-----+---------------------+----------------+
-```
+
+    계정: ID=`cheoldb` / PW=`cheolcheol`
+    데이터베이스 이름: `cheoldemo`
+    테이블: `memo` 한 개 있음
+    ```sql
+    MariaDB [cheoldemo]> describe memo;
+    +---------+--------------+------+-----+---------------------+----------------+
+    | Field   | Type         | Null | Key | Default             | Extra          |
+    +---------+--------------+------+-----+---------------------+----------------+
+    | id      | int(11)      | NO   | PRI | NULL                | auto_increment |
+    | writer  | varchar(63)  | NO   |     | NULL                |                |
+    | content | varchar(255) | NO   |     | NULL                |                |
+    | regtime | timestamp    | NO   |     | current_timestamp() |                |
+    +---------+--------------+------+-----+---------------------+----------------+
+    ```
 
 3. 소스
 `https://github.com/cjfwn2000/recruit_jiran`에 소스가 있습니다. 
