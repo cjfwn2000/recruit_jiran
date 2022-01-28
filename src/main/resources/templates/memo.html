@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Memo board</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+        function doTTS(text) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                //alert(this.responseText);
+                if(this.responseText == 'fail') return;
+                var audio = new Audio(this.responseText);
+                audio.play();
+            }
+            xhttp.open("GET", "/tts?text=" + text);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form action='/memo/write' method="post">
+            <p>
+                <label for="writer">이름</label>
+                <input type="text" name="writer" required/>
+            </p>
+            <p>
+                <label for="content">내용</label>
+                <input type="text" name="content" required/>
+            </p>
+            <p>
+                <input type="submit" value="메모 쓰기"/>
+            </p>
+        </form>
+        <form action='/memo/clear' method="post">
+            <input type="submit" value="모두 지우기"/>
+        </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>이름</th>
+                    <th>내용</th>
+                    <th>일자 시각</th>
+                    <th>음성</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m : ${memoAll}">
+                    <td th:text="${m.id}"></td>
+                    <td th:text="${m.writer}"></td>
+                    <td th:text="${m.content}"></td>
+                    <td th:text="${m.regtime}"></td>
+                    <td><a th:href="|javascript:doTTS('${m.content}')|">듣기</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
